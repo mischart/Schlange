@@ -5,12 +5,16 @@ import javafx.scene.Scene;
 import java.util.EnumMap;
 
 public class SceneController implements ViewSwitch {
-    private final EnumMap<ViewType, View> viewEnumMap;
     private final Scene scene;
+    private final EnumMap<ViewType, View> viewEnumMap;
 
-    public SceneController(EnumMap<ViewType, View> viewEnumMap, Scene scene) {
-        this.viewEnumMap = viewEnumMap;
+    public SceneController(Scene scene) {
         this.scene = scene;
+        this.viewEnumMap = new EnumMap<>(ViewType.class);
+    }
+
+    public void addView(View view) {
+        viewEnumMap.put(view.getViewType(), view);
     }
 
     @Override
