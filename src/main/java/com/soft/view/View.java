@@ -6,4 +6,6 @@ public abstract class View {
 
     abstract Pane getRoot();
 
+    abstract ViewType getViewType();
+
 }
