@@ -1,6 +1,6 @@
 package com.soft.model;
 
-import javafx.collections.ObservableList;
+import java.util.List;
 
 public class Game implements GameField {
     private final int fieldWidth;
@@ -18,7 +18,7 @@ public class Game implements GameField {
     }
 
     @Override
-    public ObservableList<FieldPoint> getSnakeBody() {
+    public List<FieldPoint> getSnakeBody() {
         return snake.getBody();
     }
 

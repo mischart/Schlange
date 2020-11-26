@@ -1,12 +1,11 @@
 package com.soft.model;
 
-import javafx.beans.Observable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Snake {
 
-    private ObservableList<FieldPoint> body;
+    private List<FieldPoint> body;
     private Direction direction;
 
     public Snake() {
@@ -14,11 +13,11 @@ public class Snake {
     }
 
     private void init() {
-        body = FXCollections.observableArrayList(fieldPoint -> new Observable[]{fieldPoint.xProperty(), fieldPoint.yProperty()});
+        body = new ArrayList<>();
         direction = Direction.UP;
     }
 
-    public ObservableList<FieldPoint> getBody() {
-        return FXCollections.unmodifiableObservableList(body);
+    public List<FieldPoint> getBody() {
+        return new ArrayList<>(body);
     }
 }

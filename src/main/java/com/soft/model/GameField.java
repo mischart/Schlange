@@ -1,7 +1,7 @@
 package com.soft.model;
 
-import javafx.collections.ObservableList;
+import java.util.List;
 
 public interface GameField {
-    ObservableList<FieldPoint> getSnakeBody();
+    List<FieldPoint> getSnakeBody();
 }
