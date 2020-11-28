@@ -2,6 +2,7 @@ package com.soft.view;
 
 import com.soft.viewmodel.GameFieldViewModel;
 import com.soft.viewmodel.ViewModelPoint;
+import javafx.animation.AnimationTimer;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -20,6 +21,8 @@ public class GameFieldView extends View implements Initializable {
     private int gameObjectWidth;
     private int gameObjectHeight;
     private ObservableList<Rectangle> snakeBody;
+    private AnimationTimer timer;
+    private long animationSpeed;
 
     @FXML
     private Pane gameFieldRoot;
@@ -62,6 +65,9 @@ public class GameFieldView extends View implements Initializable {
         snakeBody = FXCollections.observableArrayList();
         snakeBody.addListener(gameObjectListListener);
         viewModel.getSnakeBody().forEach(viewModelPoint -> snakeBody.add(createGameObject(viewModelPoint, Color.BLACK)));
+        timer = createAnimationTimer();
+        timer.start();
+        animationSpeed = 1000000000 / 8;
     }
 
     private Rectangle createGameObject(ViewModelPoint viewModelPoint, Color color) {
@@ -69,6 +75,21 @@ public class GameFieldView extends View implements Initializable {
         rectangle.xProperty().bind(viewModelPoint.xProperty().multiply(gameObjectWidth));
         rectangle.yProperty().bind(viewModelPoint.yProperty().multiply(gameObjectHeight));
         return rectangle;
+    }
+
+    private AnimationTimer createAnimationTimer() {
+        return new AnimationTimer() {
+
+            private long lastTime = 0;
+
+            @Override
+            public void handle(long now) {
+                if (now - lastTime > animationSpeed) {
+                    lastTime = now;
+                    viewModel.update();
+                }
+            }
+        };
     }
 
 }
