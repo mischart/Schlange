@@ -45,11 +45,11 @@ public class App extends Application {
 
     private GameFieldView createGameFieldView(GameFieldViewModel viewModel) throws IOException {
         GameFieldView gameFieldView = new GameFieldView(viewModel);
+        gameFieldView.setGameObjectSize(GAME_OBJECT_WIDTH, GAME_OBJECT_HEIGHT);
         loadFXML(GAME_FIELD_FXML_PATCH, gameFieldView);
         int width = FIELD_WIDTH * GAME_OBJECT_WIDTH;
         int height = FIELD_HEIGHT * GAME_OBJECT_HEIGHT;
         gameFieldView.setGameFieldSize(width, height);
-        gameFieldView.setGameObjectSize(GAME_OBJECT_WIDTH, GAME_OBJECT_HEIGHT);
         return gameFieldView;
     }
 
