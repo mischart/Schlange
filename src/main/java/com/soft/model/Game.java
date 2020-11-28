@@ -14,7 +14,7 @@ public class Game implements GameField {
     }
 
     private void init() {
-        snake = new Snake();
+        snake = new Snake(fieldWidth / 2, fieldHeight / 2);
     }
 
     @Override
