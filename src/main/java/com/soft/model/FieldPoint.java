@@ -9,8 +9,16 @@ public class FieldPoint {
         this.y = y;
     }
 
+    public int getX() {
+        return x;
+    }
+
     protected void setX(int x) {
         this.x = x;
+    }
+
+    public int getY() {
+        return y;
     }
 
     protected void setY(int y) {
