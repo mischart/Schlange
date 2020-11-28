@@ -22,4 +22,34 @@ public class Snake {
     public List<FieldPoint> getBody() {
         return new ArrayList<>(body);
     }
+
+    void update() {
+        updateRest();
+        updateHead();
+    }
+
+    private void updateHead() {
+        switch (direction) {
+            case UP:
+                body.get(0).moveUp();
+                break;
+            case DOWN:
+                body.get(0).moveDown();
+                break;
+            case RIGHT:
+                body.get(0).moveRight();
+                break;
+            case LEFT:
+                body.get(0).moveLeft();
+                break;
+        }
+    }
+
+    private void updateRest() {
+        for (int i = body.size() - 1; i > 0; i--) {
+            body.get(i).setX(body.get(i - 1).getX());
+            body.get(i).setY(body.get(i - 1).getY());
+        }
+    }
+
 }

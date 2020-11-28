@@ -1,6 +1,7 @@
 package com.soft.model;
 
 public class FieldPoint {
+
     private int x;
     private int y;
 
@@ -24,4 +25,26 @@ public class FieldPoint {
     protected void setY(int y) {
         this.y = y;
     }
+
+    void moveUp() {
+        move(0, -1);
+    }
+
+    void moveDown() {
+        move(0, 1);
+    }
+
+    void moveRight() {
+        move(1, 0);
+    }
+
+    void moveLeft() {
+        move(-1, 0);
+    }
+
+    private void move(int xToMove, int yToMove) {
+        x += xToMove;
+        y += yToMove;
+    }
+
 }

@@ -3,6 +3,7 @@ package com.soft.model;
 import java.util.List;
 
 public class Game implements GameField {
+
     private final int fieldWidth;
     private final int fieldHeight;
     private Snake snake;
@@ -20,6 +21,11 @@ public class Game implements GameField {
     @Override
     public List<FieldPoint> getSnakeBody() {
         return snake.getBody();
+    }
+
+    @Override
+    public void update() {
+        snake.update();
     }
 
 }
