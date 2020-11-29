@@ -8,4 +8,12 @@ public interface GameField {
 
     void update();
 
+    void moveUp();
+
+    void moveDown();
+
+    void moveLeft();
+
+    void moveRight();
+
 }

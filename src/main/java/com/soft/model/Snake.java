@@ -52,4 +52,20 @@ public class Snake {
         }
     }
 
+    void up() {
+        direction = Direction.UP;
+    }
+
+    void down() {
+        direction = Direction.DOWN;
+    }
+
+    void left() {
+        direction = Direction.LEFT;
+    }
+
+    void right() {
+        direction = Direction.RIGHT;
+    }
+
 }

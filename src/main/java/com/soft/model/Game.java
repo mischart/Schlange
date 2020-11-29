@@ -28,4 +28,23 @@ public class Game implements GameField {
         snake.update();
     }
 
+    @Override
+    public void moveUp() {
+        snake.up();
+    }
+
+    @Override
+    public void moveDown() {
+        snake.down();
+    }
+
+    @Override
+    public void moveLeft() {
+        snake.left();
+    }
+
+    @Override
+    public void moveRight() {
+        snake.right();
+    }
 }

@@ -8,6 +8,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -68,6 +69,24 @@ public class GameFieldView extends View implements Initializable {
         timer = createAnimationTimer();
         timer.start();
         animationSpeed = 1000000000 / 8;
+    }
+
+    @Override
+    void keyPressed(KeyCode keyCode) {
+        switch (keyCode) {
+            case UP:
+                viewModel.moveUp();
+                break;
+            case DOWN:
+                viewModel.moveDown();
+                break;
+            case LEFT:
+                viewModel.moveLeft();
+                break;
+            case RIGHT:
+                viewModel.moveRight();
+                break;
+        }
     }
 
     private Rectangle createGameObject(ViewModelPoint viewModelPoint, Color color) {

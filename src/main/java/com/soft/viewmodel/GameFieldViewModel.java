@@ -30,4 +30,20 @@ public class GameFieldViewModel {
         }
     }
 
+    public void moveUp() {
+        model.moveUp();
+    }
+
+    public void moveDown() {
+        model.moveDown();
+    }
+
+    public void moveLeft() {
+        model.moveLeft();
+    }
+
+    public void moveRight() {
+        model.moveRight();
+    }
+
 }

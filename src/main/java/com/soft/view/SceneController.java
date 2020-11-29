@@ -12,6 +12,7 @@ public class SceneController implements ViewSwitch {
     public SceneController(Scene scene) {
         this.scene = scene;
         this.viewEnumMap = new EnumMap<>(ViewType.class);
+        scene.setOnKeyPressed(e -> viewEnumMap.get(activeView).keyPressed(e.getCode()));
     }
 
     public void addView(View view) {
@@ -23,4 +24,5 @@ public class SceneController implements ViewSwitch {
         activeView = viewType;
         scene.setRoot(viewEnumMap.get(viewType).getRoot());
     }
+
 }
