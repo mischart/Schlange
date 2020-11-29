@@ -40,6 +40,7 @@ public class App extends Application {
         Scene scene = new Scene(view.getRoot());
         SceneController sceneController = new SceneController(scene);
         sceneController.addView(view);
+        sceneController.activateView(view.getViewType());
         stage.setScene(scene);
     }
 
