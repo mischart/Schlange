@@ -7,6 +7,7 @@ import java.util.EnumMap;
 public class SceneController implements ViewSwitch {
     private final Scene scene;
     private final EnumMap<ViewType, View> viewEnumMap;
+    private ViewType activeView;
 
     public SceneController(Scene scene) {
         this.scene = scene;
@@ -19,6 +20,7 @@ public class SceneController implements ViewSwitch {
 
     @Override
     public void activateView(ViewType viewType) {
+        activeView = viewType;
         scene.setRoot(viewEnumMap.get(viewType).getRoot());
     }
 }
