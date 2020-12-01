@@ -20,4 +20,6 @@ public interface GameField {
 
     void reset();
 
+    FieldPoint getFood();
+
 }

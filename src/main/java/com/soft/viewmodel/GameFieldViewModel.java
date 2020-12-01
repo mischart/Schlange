@@ -7,10 +7,12 @@ import javafx.collections.ObservableList;
 public class GameFieldViewModel {
     private final GameField model;
     private final ObservableList<ViewModelPoint> snakeBody;
+    private final ViewModelPoint food;
 
     public GameFieldViewModel(GameField gameField) {
         this.model = gameField;
         snakeBody = FXCollections.observableArrayList();
+        food = new ViewModelPoint(0, 0);
         reset();
     }
 
@@ -18,10 +20,15 @@ public class GameFieldViewModel {
         return FXCollections.unmodifiableObservableList(snakeBody);
     }
 
+    public ViewModelPoint getFood() {
+        return food;
+    }
+
     public void update() {
         model.update();
         updateSnakeBody();
-        if(model.isGameOver()) {
+        updateFood();
+        if (model.isGameOver()) {
             reset();
         }
     }
@@ -37,6 +44,11 @@ public class GameFieldViewModel {
             snakeBody.get(i).setX(model.getSnakeBody().get(i).getX());
             snakeBody.get(i).setY(model.getSnakeBody().get(i).getY());
         }
+    }
+
+    private void updateFood() {
+        food.setX(model.getFood().getX());
+        food.setY(model.getFood().getY());
     }
 
     public void moveUp() {

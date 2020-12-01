@@ -63,6 +63,8 @@ public class GameFieldView extends View implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Rectangle food = createGameObject(viewModel.getFood(), Color.RED);
+        gameFieldRoot.getChildren().add(food);
         snakeBody = FXCollections.observableArrayList();
         snakeBody.addListener(gameObjectListListener);
         viewModel.getSnakeBody().forEach(viewModelPoint -> snakeBody.add(createGameObject(viewModelPoint, Color.BLACK)));
