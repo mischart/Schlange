@@ -11,7 +11,7 @@ public class GameFieldViewModel {
     public GameFieldViewModel(GameField gameField) {
         this.model = gameField;
         snakeBody = FXCollections.observableArrayList();
-        gameField.getSnakeBody().forEach(fieldPoint -> snakeBody.add(new ViewModelPoint(fieldPoint.getX(), fieldPoint.getY())));
+        reset();
     }
 
     public ObservableList<ViewModelPoint> getSnakeBody() {
@@ -21,6 +21,15 @@ public class GameFieldViewModel {
     public void update() {
         model.update();
         updateSnakeBody();
+        if(model.isGameOver()) {
+            reset();
+        }
+    }
+
+    private void reset() {
+        snakeBody.removeAll();
+        model.reset();
+        model.getSnakeBody().forEach(fieldPoint -> snakeBody.add(new ViewModelPoint(fieldPoint.getX(), fieldPoint.getY())));
     }
 
     private void updateSnakeBody() {

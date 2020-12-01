@@ -11,10 +11,10 @@ public class Game implements GameField {
     public Game(int fieldWidth, int fieldHeight) {
         this.fieldWidth = fieldWidth;
         this.fieldHeight = fieldHeight;
-        init();
     }
 
-    private void init() {
+    @Override
+    public void reset() {
         snake = new Snake(fieldWidth / 2, fieldHeight / 2);
     }
 
@@ -47,4 +47,15 @@ public class Game implements GameField {
     public void moveRight() {
         snake.right();
     }
+
+    @Override
+    public boolean isGameOver() {
+        return isSnakeOutside();
+    }
+
+    private boolean isSnakeOutside() {
+        return snake.getHead().getX() < 0 || snake.getHead().getX() > fieldWidth
+                || snake.getHead().getY() < 0 || snake.getHead().getY() > fieldHeight;
+    }
+
 }

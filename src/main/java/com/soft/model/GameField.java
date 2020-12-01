@@ -16,4 +16,8 @@ public interface GameField {
 
     void moveRight();
 
+    boolean isGameOver();
+
+    void reset();
+
 }

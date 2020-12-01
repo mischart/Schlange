@@ -23,6 +23,10 @@ public class Snake {
         return new ArrayList<>(body);
     }
 
+    FieldPoint getHead() {
+        return body.get(0);
+    }
+
     void update() {
         updateRest();
         updateHead();
