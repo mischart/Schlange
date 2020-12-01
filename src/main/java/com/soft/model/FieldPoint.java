@@ -26,23 +26,7 @@ public class FieldPoint {
         this.y = y;
     }
 
-    void moveUp() {
-        move(0, -1);
-    }
-
-    void moveDown() {
-        move(0, 1);
-    }
-
-    void moveRight() {
-        move(1, 0);
-    }
-
-    void moveLeft() {
-        move(-1, 0);
-    }
-
-    private void move(int xToMove, int yToMove) {
+    void move(int xToMove, int yToMove) {
         x += xToMove;
         y += yToMove;
     }

@@ -35,16 +35,16 @@ public class Snake {
     private void updateHead() {
         switch (direction) {
             case UP:
-                body.get(0).moveUp();
+                getHead().move(0, -1);
                 break;
             case DOWN:
-                body.get(0).moveDown();
+                getHead().move(0, 1);
                 break;
             case RIGHT:
-                body.get(0).moveRight();
+                getHead().move(1, 0);
                 break;
             case LEFT:
-                body.get(0).moveLeft();
+                getHead().move(-1, 0);
                 break;
         }
     }
