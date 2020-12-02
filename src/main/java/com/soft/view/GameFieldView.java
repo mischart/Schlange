@@ -22,9 +22,15 @@ public class GameFieldView extends View implements Initializable {
     private int gameObjectWidth;
     private int gameObjectHeight;
     private ObservableList<Rectangle> snakeBody;
+    private final ListChangeListener<ViewModelPoint> snakeBodyListener = change -> {
+        while (change.next()) {
+            if (change.wasAdded()) {
+                change.getAddedSubList().forEach(viewModelPoint -> snakeBody.add(createGameObject(viewModelPoint, Color.BLACK)));
+            }
+        }
+    };
     private AnimationTimer timer;
     private long animationSpeed;
-
     @FXML
     private Pane gameFieldRoot;
     private final ListChangeListener<Rectangle> gameObjectListListener = change -> {
@@ -67,10 +73,19 @@ public class GameFieldView extends View implements Initializable {
         gameFieldRoot.getChildren().add(food);
         snakeBody = FXCollections.observableArrayList();
         snakeBody.addListener(gameObjectListListener);
-        viewModel.getSnakeBody().forEach(viewModelPoint -> snakeBody.add(createGameObject(viewModelPoint, Color.BLACK)));
+        viewModel.getSnakeBody().addListener(snakeBodyListener);
         timer = createAnimationTimer();
         timer.start();
         animationSpeed = 1000000000 / 8;
+        viewModel.gameOverProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                reset();
+            }
+        });
+    }
+
+    private void reset() {
+        snakeBody.clear();
     }
 
     @Override

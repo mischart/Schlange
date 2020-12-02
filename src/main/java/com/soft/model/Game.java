@@ -7,9 +7,9 @@ public class Game implements GameField {
 
     private final int fieldWidth;
     private final int fieldHeight;
-    private Snake snake;
     private final FieldPoint food;
     private final Random random;
+    private Snake snake;
 
     public Game(int fieldWidth, int fieldHeight) {
         this.fieldWidth = fieldWidth;
@@ -37,6 +37,10 @@ public class Game implements GameField {
     @Override
     public void update() {
         snake.update();
+        if (foodEaten()) {
+            snake.extend();
+            showFood();
+        }
     }
 
     @Override
@@ -67,19 +71,19 @@ public class Game implements GameField {
     private void showFood() {
         int randomX;
         int randomY;
-        start:
         while (true) {
             randomX = random.nextInt(fieldWidth);
             randomY = random.nextInt(fieldHeight);
-            for (FieldPoint point : getSnakeBody()) {
-                if (point.getX() == randomX && point.getY() == randomY) {
-                    continue start;
-                }
-            }
+            if (snake.hasPoint(new FieldPoint(randomX, randomY)))
+                continue;
             break;
         }
         food.setX(randomX);
         food.setY(randomY);
+    }
+
+    private boolean foodEaten() {
+        return food.getX() == snake.getHead().getX() && food.getY() == snake.getHead().getY();
     }
 
     private boolean isSnakeOutside() {

@@ -8,6 +8,11 @@ public class ViewModelPoint {
     private final IntegerProperty x;
     private final IntegerProperty y;
 
+    public ViewModelPoint() {
+        x = new SimpleIntegerProperty();
+        y = new SimpleIntegerProperty();
+    }
+
     public ViewModelPoint(int x, int y) {
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);

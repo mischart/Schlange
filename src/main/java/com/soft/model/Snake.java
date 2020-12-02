@@ -56,6 +56,20 @@ public class Snake {
         }
     }
 
+    boolean hasPoint(FieldPoint point) {
+        for (FieldPoint snakePoint : body) {
+            if (snakePoint.getX() == point.getX() && snakePoint.getY() == point.getY()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    void extend() {
+        FieldPoint tail = body.get(body.size() - 1);
+        body.add(new FieldPoint(tail.getX(), tail.getY()));
+    }
+
     void up() {
         direction = Direction.UP;
     }
