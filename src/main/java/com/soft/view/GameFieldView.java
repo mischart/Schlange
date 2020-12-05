@@ -21,14 +21,14 @@ public class GameFieldView extends View implements Initializable {
     private final GameFieldViewModel viewModel;
     private int gameObjectWidth;
     private int gameObjectHeight;
-    private ObservableList<GameObject> snakeBody;
-    private final ListChangeListener<ViewModelPoint> snakeBodyListener = change -> {
+    private ObservableList<GameObject> snakeGameObjects;
+    private final ListChangeListener<ViewModelPoint> snakeListener = change -> {
         while (change.next()) {
             if (change.wasAdded()) {
-                change.getAddedSubList().forEach(viewModelPoint -> snakeBody.add(createGameObject(viewModelPoint, Color.BLACK)));
+                change.getAddedSubList().forEach(viewModelPoint -> snakeGameObjects.add(createGameObject(viewModelPoint, Color.BLACK)));
             }
             if (change.wasRemoved()) {
-                change.getRemoved().forEach(point -> snakeBody.removeIf(item -> item.getIndex() == point.getIndex()));
+                change.getRemoved().forEach(point -> snakeGameObjects.removeIf(item -> item.getIndex() == point.getIndex()));
             }
 
         }
@@ -73,11 +73,11 @@ public class GameFieldView extends View implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        GameObject food = createGameObject(viewModel.getFood(), Color.RED);
-        gameFieldRoot.getChildren().add(food);
-        snakeBody = FXCollections.observableArrayList();
-        snakeBody.addListener(gameObjectListListener);
-        viewModel.getSnakeBody().addListener(snakeBodyListener);
+        GameObject foodGameObject = createGameObject(viewModel.getFood(), Color.RED);
+        gameFieldRoot.getChildren().add(foodGameObject);
+        snakeGameObjects = FXCollections.observableArrayList();
+        snakeGameObjects.addListener(gameObjectListListener);
+        viewModel.getSnakeBody().addListener(snakeListener);
         timer = createAnimationTimer();
         timer.start();
         animationSpeed = 1000000000 / 8;
