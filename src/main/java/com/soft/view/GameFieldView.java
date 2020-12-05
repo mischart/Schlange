@@ -22,31 +22,10 @@ public class GameFieldView extends View implements Initializable {
     private int gameObjectWidth;
     private int gameObjectHeight;
     private ObservableList<GameObject> snakeGameObjects;
-    private final ListChangeListener<ViewModelPoint> snakeListener = change -> {
-        while (change.next()) {
-            if (change.wasAdded()) {
-                change.getAddedSubList().forEach(viewModelPoint -> snakeGameObjects.add(createGameObject(viewModelPoint, Color.BLACK)));
-            }
-            if (change.wasRemoved()) {
-                change.getRemoved().forEach(point -> snakeGameObjects.removeIf(item -> item.getIndex() == point.getIndex()));
-            }
-
-        }
-    };
     private AnimationTimer timer;
     private long animationSpeed;
     @FXML
     private Pane gameFieldRoot;
-    private final ListChangeListener<Rectangle> gameObjectListListener = change -> {
-        while (change.next()) {
-            if (change.wasAdded()) {
-                gameFieldRoot.getChildren().addAll(change.getAddedSubList());
-            }
-            if (change.wasRemoved()) {
-                gameFieldRoot.getChildren().removeAll(change.getRemoved());
-            }
-        }
-    };
 
     public GameFieldView(GameFieldViewModel viewModel) {
         this.viewModel = viewModel;
@@ -76,7 +55,9 @@ public class GameFieldView extends View implements Initializable {
         GameObject foodGameObject = createGameObject(viewModel.getFood(), Color.RED);
         gameFieldRoot.getChildren().add(foodGameObject);
         snakeGameObjects = FXCollections.observableArrayList();
+        ListChangeListener<Rectangle> gameObjectListListener = createGameObjectListListener();
         snakeGameObjects.addListener(gameObjectListListener);
+        ListChangeListener<ViewModelPoint> snakeListener = createSnakeListener();
         viewModel.getSnakeBody().addListener(snakeListener);
         timer = createAnimationTimer();
         timer.start();
@@ -85,6 +66,33 @@ public class GameFieldView extends View implements Initializable {
             if (newValue) {
             }
         });
+    }
+
+    private ListChangeListener<ViewModelPoint> createSnakeListener() {
+        return change -> {
+            while (change.next()) {
+                if (change.wasAdded()) {
+                    change.getAddedSubList().forEach(viewModelPoint -> snakeGameObjects.add(createGameObject(viewModelPoint, Color.BLACK)));
+                }
+                if (change.wasRemoved()) {
+                    change.getRemoved().forEach(point -> snakeGameObjects.removeIf(item -> item.getIndex() == point.getIndex()));
+                }
+
+            }
+        };
+    }
+
+    private ListChangeListener<Rectangle> createGameObjectListListener() {
+        return change -> {
+            while (change.next()) {
+                if (change.wasAdded()) {
+                    gameFieldRoot.getChildren().addAll(change.getAddedSubList());
+                }
+                if (change.wasRemoved()) {
+                    gameFieldRoot.getChildren().removeAll(change.getRemoved());
+                }
+            }
+        };
     }
 
     @Override
