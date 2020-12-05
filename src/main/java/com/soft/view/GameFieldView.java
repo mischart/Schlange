@@ -21,12 +21,16 @@ public class GameFieldView extends View implements Initializable {
     private final GameFieldViewModel viewModel;
     private int gameObjectWidth;
     private int gameObjectHeight;
-    private ObservableList<Rectangle> snakeBody;
+    private ObservableList<GameObject> snakeBody;
     private final ListChangeListener<ViewModelPoint> snakeBodyListener = change -> {
         while (change.next()) {
             if (change.wasAdded()) {
                 change.getAddedSubList().forEach(viewModelPoint -> snakeBody.add(createGameObject(viewModelPoint, Color.BLACK)));
             }
+            if (change.wasRemoved()) {
+                change.getRemoved().forEach(point -> snakeBody.removeIf(item -> item.getIndex() == point.getIndex()));
+            }
+
         }
     };
     private AnimationTimer timer;
@@ -69,7 +73,7 @@ public class GameFieldView extends View implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Rectangle food = createGameObject(viewModel.getFood(), Color.RED);
+        GameObject food = createGameObject(viewModel.getFood(), Color.RED);
         gameFieldRoot.getChildren().add(food);
         snakeBody = FXCollections.observableArrayList();
         snakeBody.addListener(gameObjectListListener);
@@ -79,13 +83,8 @@ public class GameFieldView extends View implements Initializable {
         animationSpeed = 1000000000 / 8;
         viewModel.gameOverProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
-                reset();
             }
         });
-    }
-
-    private void reset() {
-        snakeBody.clear();
     }
 
     @Override
@@ -106,8 +105,8 @@ public class GameFieldView extends View implements Initializable {
         }
     }
 
-    private Rectangle createGameObject(ViewModelPoint viewModelPoint, Color color) {
-        Rectangle rectangle = new Rectangle(gameObjectWidth, gameObjectHeight, color);
+    private GameObject createGameObject(ViewModelPoint viewModelPoint, Color color) {
+        GameObject rectangle = new GameObject(gameObjectWidth, gameObjectHeight, color, viewModelPoint.getIndex());
         rectangle.xProperty().bind(viewModelPoint.xProperty().multiply(gameObjectWidth));
         rectangle.yProperty().bind(viewModelPoint.yProperty().multiply(gameObjectHeight));
         return rectangle;

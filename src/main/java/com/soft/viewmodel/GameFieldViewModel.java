@@ -56,6 +56,7 @@ public class GameFieldViewModel {
             }
             snakeBody.get(i).setX(model.getSnakeBody().get(i).getX());
             snakeBody.get(i).setY(model.getSnakeBody().get(i).getY());
+            snakeBody.get(i).setIndex(i);
         }
     }
 
