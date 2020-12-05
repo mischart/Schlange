@@ -7,6 +7,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 public class ViewModelPoint {
     private final IntegerProperty x;
     private final IntegerProperty y;
+    private int index;
 
     public ViewModelPoint() {
         x = new SimpleIntegerProperty();
@@ -32,5 +33,13 @@ public class ViewModelPoint {
 
     protected void setY(int y) {
         this.y.set(y);
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    void setIndex(int index) {
+        this.index = index;
     }
 }
