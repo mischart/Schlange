@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.Pane?>
+<?import java.net.URL?>
 <Pane xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
       fx:id="gameFieldRoot">
+    <stylesheets>
+        <URL value="@../css/schlange.css"/>
+    </stylesheets>
 </Pane>
