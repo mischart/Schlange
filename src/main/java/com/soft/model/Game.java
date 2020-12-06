@@ -92,8 +92,8 @@ public class Game implements GameField {
     }
 
     private boolean isSnakeOutside() {
-        return snake.getHead().getX() < 0 || snake.getHead().getX() > fieldWidth
-                || snake.getHead().getY() < 0 || snake.getHead().getY() > fieldHeight;
+        return snake.getHead().getX() < 0 || snake.getHead().getX() >= fieldWidth
+                || snake.getHead().getY() < 0 || snake.getHead().getY() >= fieldHeight;
     }
 
 }
