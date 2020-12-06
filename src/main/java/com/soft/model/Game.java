@@ -37,7 +37,7 @@ public class Game implements GameField {
     @Override
     public void update() {
         snake.update();
-        if (foodEaten()) {
+        if (isFoodEaten()) {
             snake.extend();
             showFood();
         }
@@ -82,8 +82,8 @@ public class Game implements GameField {
         food.setY(randomY);
     }
 
-    private boolean foodEaten() {
-        return food.getX() == snake.getHead().getX() && food.getY() == snake.getHead().getY();
+    private boolean isFoodEaten() {
+        return snake.getHead().equalsLocation(food);
     }
 
     private boolean isSnakeDestroyed() {
