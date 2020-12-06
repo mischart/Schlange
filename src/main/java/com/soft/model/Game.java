@@ -65,7 +65,7 @@ public class Game implements GameField {
 
     @Override
     public boolean isGameOver() {
-        return isSnakeOutside();
+        return isSnakeOutside() || isSnakeDestroyed();
     }
 
     private void showFood() {
@@ -84,6 +84,11 @@ public class Game implements GameField {
 
     private boolean foodEaten() {
         return food.getX() == snake.getHead().getX() && food.getY() == snake.getHead().getY();
+    }
+
+    private boolean isSnakeDestroyed() {
+        FieldPoint head = snake.getHead();
+        return getSnakeBody().stream().anyMatch(point -> !head.equals(point) && head.equalsLocation(point));
     }
 
     private boolean isSnakeOutside() {

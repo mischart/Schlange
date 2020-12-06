@@ -31,4 +31,8 @@ public class FieldPoint {
         y += yToMove;
     }
 
+    boolean equalsLocation(FieldPoint point) {
+        return x == point.x && y == point.y;
+    }
+
 }
