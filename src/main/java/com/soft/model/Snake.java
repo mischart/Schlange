@@ -71,19 +71,23 @@ public class Snake {
     }
 
     void up() {
-        direction = Direction.UP;
+        if (!direction.equals(Direction.DOWN))
+            direction = Direction.UP;
     }
 
     void down() {
-        direction = Direction.DOWN;
+        if (!direction.equals(Direction.UP))
+            direction = Direction.DOWN;
     }
 
     void left() {
-        direction = Direction.LEFT;
+        if (!direction.equals(Direction.RIGHT))
+            direction = Direction.LEFT;
     }
 
     void right() {
-        direction = Direction.RIGHT;
+        if (!direction.equals(Direction.LEFT))
+            direction = Direction.RIGHT;
     }
 
 }
