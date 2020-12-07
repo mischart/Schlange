@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
@@ -26,6 +27,8 @@ public class GameFieldView extends View implements Initializable {
     private AnimationTimer timer;
     private long animationSpeed;
     private static final String POINTS = "points";
+    @FXML
+    private VBox root;
     @FXML
     private Pane gameFieldRoot;
     @FXML
@@ -46,7 +49,7 @@ public class GameFieldView extends View implements Initializable {
 
     @Override
     public Pane getRoot() {
-        return gameFieldRoot;
+        return root;
     }
 
     @Override
