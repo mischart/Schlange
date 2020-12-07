@@ -10,6 +10,7 @@ public class Game implements GameField {
     private final FieldPoint food;
     private final Random random;
     private Snake snake;
+    private int score;
 
     public Game(int fieldWidth, int fieldHeight) {
         this.fieldWidth = fieldWidth;
@@ -20,8 +21,14 @@ public class Game implements GameField {
 
     @Override
     public void reset() {
+        score = 0;
         snake = new Snake(fieldWidth / 2, fieldHeight / 2);
         showFood();
+    }
+
+    @Override
+    public int getScore() {
+        return score;
     }
 
     @Override
@@ -38,6 +45,7 @@ public class Game implements GameField {
     public void update() {
         snake.update();
         if (isFoodEaten()) {
+            score += 10;
             snake.extend();
             showFood();
         }

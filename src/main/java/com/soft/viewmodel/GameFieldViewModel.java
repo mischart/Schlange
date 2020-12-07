@@ -1,9 +1,7 @@
 package com.soft.viewmodel;
 
 import com.soft.model.GameField;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.ReadOnlyBooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -12,12 +10,14 @@ public class GameFieldViewModel {
     private final ObservableList<ViewModelPoint> snakeBody;
     private final ViewModelPoint food;
     private final BooleanProperty gameOver;
+    private final IntegerProperty score;
 
     public GameFieldViewModel(GameField gameField) {
         this.model = gameField;
         snakeBody = FXCollections.observableArrayList();
         food = new ViewModelPoint(0, 0);
         gameOver = new SimpleBooleanProperty(false);
+        score = new SimpleIntegerProperty(0);
         reset();
     }
 
@@ -33,10 +33,15 @@ public class GameFieldViewModel {
         return gameOver;
     }
 
+    public ReadOnlyIntegerProperty scoreProperty() {
+        return score;
+    }
+
     public void update() {
         model.update();
         updateSnakeBody();
         updateFood();
+        updateScore();
         if (model.isGameOver()) {
             gameOver.set(true);
             reset();
@@ -44,6 +49,7 @@ public class GameFieldViewModel {
     }
 
     private void reset() {
+        score.set(0);
         gameOver.set(false);
         snakeBody.clear();
         model.reset();
@@ -63,6 +69,10 @@ public class GameFieldViewModel {
     private void updateFood() {
         food.setX(model.getFood().getX());
         food.setY(model.getFood().getY());
+    }
+
+    private void updateScore() {
+        score.set(model.getScore());
     }
 
     public void moveUp() {

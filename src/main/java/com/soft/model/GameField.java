@@ -22,4 +22,6 @@ public interface GameField {
 
     FieldPoint getFood();
 
+    int getScore();
+
 }

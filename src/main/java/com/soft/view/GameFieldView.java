@@ -3,15 +3,16 @@ package com.soft.view;
 import com.soft.viewmodel.GameFieldViewModel;
 import com.soft.viewmodel.ViewModelPoint;
 import javafx.animation.AnimationTimer;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,8 +25,11 @@ public class GameFieldView extends View implements Initializable {
     private ObservableList<GameObject> snakeGameObjects;
     private AnimationTimer timer;
     private long animationSpeed;
+    private static final String POINTS = "points";
     @FXML
     private Pane gameFieldRoot;
+    @FXML
+    private Label scoreLabel;
 
     public GameFieldView(GameFieldViewModel viewModel) {
         this.viewModel = viewModel;
@@ -52,10 +56,12 @@ public class GameFieldView extends View implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        String pointString = resources.getString(POINTS);
+        scoreLabel.textProperty().bind(new SimpleStringProperty(pointString).concat(viewModel.scoreProperty().asString()));
         GameObject foodGameObject = createGameObject(viewModel.getFood(), Color.RED);
         gameFieldRoot.getChildren().add(foodGameObject);
         snakeGameObjects = FXCollections.observableArrayList();
-        ListChangeListener<Rectangle> gameObjectListListener = createGameObjectListListener();
+        ListChangeListener<GameObject> gameObjectListListener = createGameObjectListListener();
         snakeGameObjects.addListener(gameObjectListListener);
         ListChangeListener<ViewModelPoint> snakeListener = createSnakeListener();
         viewModel.getSnakeBody().addListener(snakeListener);
@@ -82,7 +88,7 @@ public class GameFieldView extends View implements Initializable {
         };
     }
 
-    private ListChangeListener<Rectangle> createGameObjectListListener() {
+    private ListChangeListener<GameObject> createGameObjectListListener() {
         return change -> {
             while (change.next()) {
                 if (change.wasAdded()) {
