@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class App extends Application {
 
@@ -19,6 +21,7 @@ public class App extends Application {
     private static final int GAME_OBJECT_WIDTH = 10;
     private static final int GAME_OBJECT_HEIGHT = 10;
     private static final String GAME_FIELD_FXML_PATCH = "fxml/game_field_view.fxml";
+    private static final String STRING_RESOURCE_PATCH = "com.soft.strings.strings";
 
     public static void main(String[] args) {
         launch();
@@ -57,6 +60,8 @@ public class App extends Application {
     private void loadFXML(String fxmlFilePath, View view) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxmlFilePath));
         fxmlLoader.setController(view);
+        ResourceBundle resourceBundle = ResourceBundle.getBundle(STRING_RESOURCE_PATCH, Locale.GERMAN);
+        fxmlLoader.setResources(resourceBundle);
         fxmlLoader.load();
     }
 
