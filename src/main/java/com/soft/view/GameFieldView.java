@@ -30,7 +30,7 @@ public class GameFieldView extends View implements Initializable {
     @FXML
     private VBox root;
     @FXML
-    private Pane gameFieldRoot;
+    private Pane gameFieldPane;
     @FXML
     private Label scoreLabel;
 
@@ -39,7 +39,7 @@ public class GameFieldView extends View implements Initializable {
     }
 
     public void setGameFieldSize(int gameFieldWidth, int gameFieldHeight) {
-        gameFieldRoot.setPrefSize(gameFieldWidth, gameFieldHeight);
+        gameFieldPane.setPrefSize(gameFieldWidth, gameFieldHeight);
     }
 
     public void setGameObjectSize(int gameObjectWidth, int gameObjectHeight) {
@@ -62,7 +62,7 @@ public class GameFieldView extends View implements Initializable {
         String pointString = resources.getString(POINTS);
         scoreLabel.textProperty().bind(new SimpleStringProperty(pointString).concat(viewModel.scoreProperty().asString()));
         GameObject foodGameObject = createGameObject(viewModel.getFood(), Color.RED);
-        gameFieldRoot.getChildren().add(foodGameObject);
+        gameFieldPane.getChildren().add(foodGameObject);
         snakeGameObjects = FXCollections.observableArrayList();
         ListChangeListener<GameObject> gameObjectListListener = createGameObjectListListener();
         snakeGameObjects.addListener(gameObjectListListener);
@@ -95,10 +95,10 @@ public class GameFieldView extends View implements Initializable {
         return change -> {
             while (change.next()) {
                 if (change.wasAdded()) {
-                    gameFieldRoot.getChildren().addAll(change.getAddedSubList());
+                    gameFieldPane.getChildren().addAll(change.getAddedSubList());
                 }
                 if (change.wasRemoved()) {
-                    gameFieldRoot.getChildren().removeAll(change.getRemoved());
+                    gameFieldPane.getChildren().removeAll(change.getRemoved());
                 }
             }
         };

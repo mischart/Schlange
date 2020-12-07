@@ -12,5 +12,5 @@
         <URL value="@../css/schlange.css"/>
     </stylesheets>
     <Label fx:id="scoreLabel" prefWidth="${root.width}"/>
-    <Pane fx:id="gameFieldRoot"/>
+    <Pane fx:id="gameFieldPane"/>
 </VBox>
