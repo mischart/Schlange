@@ -15,9 +15,10 @@ public class ViewModelPoint {
         this.index = index;
     }
 
-    public ViewModelPoint(int x, int y) {
+    public ViewModelPoint(int x, int y, int index) {
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
+        this.index = index;
     }
 
     public ReadOnlyIntegerProperty xProperty() {

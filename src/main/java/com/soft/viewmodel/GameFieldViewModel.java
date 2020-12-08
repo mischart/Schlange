@@ -15,7 +15,7 @@ public class GameFieldViewModel {
     public GameFieldViewModel(GameField gameField) {
         this.model = gameField;
         snakeBody = FXCollections.observableArrayList();
-        food = new ViewModelPoint(0, 0);
+        food = new ViewModelPoint(0, 0, 0);
         gameOver = new SimpleBooleanProperty(false);
         score = new SimpleIntegerProperty(0);
         reset();
