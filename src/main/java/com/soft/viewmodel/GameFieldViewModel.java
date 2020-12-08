@@ -22,7 +22,7 @@ public class GameFieldViewModel {
     }
 
     public ObservableList<ViewModelPoint> getSnakeBody() {
-        return FXCollections.unmodifiableObservableList(snakeBody);
+        return snakeBody;
     }
 
     public ViewModelPoint getFood() {
