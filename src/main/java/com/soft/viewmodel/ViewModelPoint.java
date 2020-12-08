@@ -9,9 +9,10 @@ public class ViewModelPoint {
     private final IntegerProperty y;
     private int index;
 
-    public ViewModelPoint() {
+    public ViewModelPoint(int index) {
         x = new SimpleIntegerProperty();
         y = new SimpleIntegerProperty();
+        this.index = index;
     }
 
     public ViewModelPoint(int x, int y) {

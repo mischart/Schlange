@@ -56,13 +56,13 @@ public class GameFieldViewModel {
     }
 
     private void updateSnakeBody() {
+        while (snakeBody.size() < model.getSnakeBody().size()) {
+            snakeBody.add(new ViewModelPoint(snakeBody.size()));
+        }
+
         for (int i = 0; i < model.getSnakeBody().size(); i++) {
-            if (snakeBody.size() < model.getSnakeBody().size()) {
-                snakeBody.add(new ViewModelPoint());
-            }
             snakeBody.get(i).setX(model.getSnakeBody().get(i).getX());
             snakeBody.get(i).setY(model.getSnakeBody().get(i).getY());
-            snakeBody.get(i).setIndex(i);
         }
     }
 
