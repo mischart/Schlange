@@ -7,10 +7,10 @@
 <?import javafx.scene.layout.VBox?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
-      fx:id="root">
+      fx:id="root" prefWidth="${gameFieldPane.width}">
     <stylesheets>
         <URL value="@../css/schlange.css"/>
     </stylesheets>
-    <Label fx:id="scoreLabel" prefWidth="${root.width}"/>
+    <Label fx:id="scoreLabel" prefWidth="${gameFieldPane.width}"/>
     <Pane fx:id="gameFieldPane"/>
 </VBox>
