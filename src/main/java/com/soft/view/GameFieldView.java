@@ -40,6 +40,8 @@ public class GameFieldView extends View implements Initializable {
 
     public void setGameFieldSize(int gameFieldWidth, int gameFieldHeight) {
         gameFieldPane.setPrefSize(gameFieldWidth, gameFieldHeight);
+        gameFieldPane.setMinSize(gameFieldWidth, gameFieldHeight);
+        gameFieldPane.setMaxSize(gameFieldWidth, gameFieldHeight);
     }
 
     public void setGameObjectSize(int gameObjectWidth, int gameObjectHeight) {
