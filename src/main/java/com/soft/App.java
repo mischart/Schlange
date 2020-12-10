@@ -3,7 +3,7 @@ package com.soft;
 import com.soft.model.Game;
 import com.soft.view.GameFieldView;
 import com.soft.view.GameStartView;
-import com.soft.view.SceneController;
+import com.soft.view.StageController;
 import com.soft.view.View;
 import com.soft.viewmodel.GameFieldViewModel;
 import com.soft.viewmodel.GameStartViewModel;
@@ -49,16 +49,16 @@ public class App extends Application {
         Scene scene = new Scene(gameFieldView.getRoot());
         // set scene
         stage.setScene(scene);
-        // create scene controller
-        SceneController sceneController = new SceneController(stage);
-        // set scene controller
-        gameStartView.setViewSwitch(sceneController);
-        gameFieldView.setViewSwitch(sceneController);
+        // create stage controller
+        StageController stageController = new StageController(stage);
+        // set stage controller
+        gameStartView.setViewSwitch(stageController);
+        gameFieldView.setViewSwitch(stageController);
         // add views
-        sceneController.addView(gameFieldView);
-        sceneController.addView(gameStartView);
+        stageController.addView(gameFieldView);
+        stageController.addView(gameStartView);
         // activate view
-        sceneController.activateView(gameStartView.getViewType());
+        stageController.activateView(gameStartView.getViewType());
 
     }
 
