@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import java.net.URL?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:id="startRoot" alignment="CENTER" prefHeight="500" prefWidth="450"
+      xmlns="http://javafx.com/javafx/11.0.1">
+    <stylesheets>
+        <URL value="@../css/schlange.css"/>
+    </stylesheets>
+    <Label fx:id="gameNameLabel" alignment="CENTER" prefHeight="${startRoot.height / 2}" prefWidth="${startRoot.width}"
+           text="%snake"/>
+    <VBox alignment="CENTER" prefHeight="${startRoot.height / 2}">
+        <Button fx:id="playButton" alignment="CENTER" prefHeight="50" prefWidth="100" text="%game"/>
+    </VBox>
+</VBox>
