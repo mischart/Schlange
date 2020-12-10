@@ -3,7 +3,7 @@ package com.soft.model;
 import java.util.List;
 import java.util.Random;
 
-public class Game implements GameField {
+public class Game implements GameField, GameStart {
 
     private final int fieldWidth;
     private final int fieldHeight;
