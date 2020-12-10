@@ -51,9 +51,6 @@ public class App extends Application {
         stage.setScene(scene);
         // create stage controller
         StageController stageController = new StageController(stage);
-        // set stage controller
-        gameStartView.setViewSwitch(stageController);
-        gameFieldView.setViewSwitch(stageController);
         // add views
         stageController.addView(gameFieldView);
         stageController.addView(gameStartView);

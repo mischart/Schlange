@@ -17,6 +17,7 @@ public class StageController implements ViewSwitch {
 
     public void addView(View view) {
         viewEnumMap.put(view.getViewType(), view);
+        view.setViewSwitch(this);
     }
 
     @Override
