@@ -1,18 +1,18 @@
 package com.soft.view;
 
-import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import java.util.EnumMap;
 
 public class SceneController implements ViewSwitch {
-    private final Scene scene;
+    private final Stage stage;
     private final EnumMap<ViewType, View> viewEnumMap;
     private ViewType activeView;
 
-    public SceneController(Scene scene) {
-        this.scene = scene;
+    public SceneController(Stage stage) {
+        this.stage = stage;
         this.viewEnumMap = new EnumMap<>(ViewType.class);
-        scene.setOnKeyPressed(e -> viewEnumMap.get(activeView).keyPressed(e.getCode()));
+        stage.getScene().setOnKeyPressed(e -> viewEnumMap.get(activeView).keyPressed(e.getCode()));
     }
 
     public void addView(View view) {
@@ -22,7 +22,8 @@ public class SceneController implements ViewSwitch {
     @Override
     public void activateView(ViewType viewType) {
         activeView = viewType;
-        scene.setRoot(viewEnumMap.get(viewType).getRoot());
+        stage.getScene().setRoot(viewEnumMap.get(viewType).getRoot());
+        stage.sizeToScene();
     }
 
 }

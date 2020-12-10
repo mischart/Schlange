@@ -2,9 +2,11 @@ package com.soft;
 
 import com.soft.model.Game;
 import com.soft.view.GameFieldView;
+import com.soft.view.GameStartView;
 import com.soft.view.SceneController;
 import com.soft.view.View;
 import com.soft.viewmodel.GameFieldViewModel;
+import com.soft.viewmodel.GameStartViewModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -21,6 +23,7 @@ public class App extends Application {
     private static final int GAME_OBJECT_WIDTH = 10;
     private static final int GAME_OBJECT_HEIGHT = 10;
     private static final String GAME_FIELD_FXML_PATCH = "fxml/game_field_view.fxml";
+    private static final String GAME_START_FXML_PATCH = "fxml/game_start_view.fxml";
     private static final String STRING_RESOURCE_PATCH = "com.soft.strings.strings";
 
     public static void main(String[] args) {
@@ -34,17 +37,29 @@ public class App extends Application {
     }
 
     private void initMVVM(Stage stage) throws IOException {
-        // model
+        // create model
         Game model = new Game(FIELD_WIDTH, FIELD_HEIGHT);
-        // view model
+        // create view models
         GameFieldViewModel gameFieldViewModel = new GameFieldViewModel(model);
-        // view
+        GameStartViewModel gameStartViewModel = new GameStartViewModel(model);
+        // create views
+        GameStartView gameStartView = createGameStartView(gameStartViewModel);
         GameFieldView view = createGameFieldView(gameFieldViewModel);
+        // create scene
         Scene scene = new Scene(view.getRoot());
-        SceneController sceneController = new SceneController(scene);
-        sceneController.addView(view);
-        sceneController.activateView(view.getViewType());
+        // set scene
         stage.setScene(scene);
+        // create scene controller
+        SceneController sceneController = new SceneController(stage);
+        // set scene controller
+        gameStartView.setViewSwitch(sceneController);
+        view.setViewSwitch(sceneController);
+        // add views
+        sceneController.addView(view);
+        sceneController.addView(gameStartView);
+        // activate view
+        sceneController.activateView(gameStartView.getViewType());
+
     }
 
     private GameFieldView createGameFieldView(GameFieldViewModel viewModel) throws IOException {
@@ -55,6 +70,13 @@ public class App extends Application {
         int height = FIELD_HEIGHT * GAME_OBJECT_HEIGHT;
         gameFieldView.setGameFieldSize(width, height);
         return gameFieldView;
+    }
+
+    // TODO: extract this method from createGameFieldView
+    private GameStartView createGameStartView(GameStartViewModel viewModel) throws IOException {
+        GameStartView view = new GameStartView(viewModel);
+        loadFXML(GAME_START_FXML_PATCH, view);
+        return view;
     }
 
     private void loadFXML(String fxmlFilePath, View view) throws IOException {
