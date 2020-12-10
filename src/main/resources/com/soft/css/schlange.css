@@ -9,3 +9,19 @@ Pane {
     -fx-padding: 5 0 0 10;
     -fx-font-size: 16px;
 }
+
+#startRoot {
+    -fx-background-color: black;
+}
+
+#gameNameLabel {
+    -fx-font-size: 100px;
+    -fx-padding: 0 0 0 0;
+}
+
+#playButton {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-background-color: red;
+    -fx-text-fill: black;
+}
