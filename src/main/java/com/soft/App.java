@@ -45,17 +45,13 @@ public class App extends Application {
         // create views
         GameStartView gameStartView = createGameStartView(gameStartViewModel);
         GameFieldView gameFieldView = createGameFieldView(gameFieldViewModel);
-        // create scene
-        Scene scene = new Scene(gameFieldView.getRoot());
-        // set scene
-        stage.setScene(scene);
         // create stage controller
         StageController stageController = new StageController(stage);
         // add views
         stageController.addView(gameFieldView);
         stageController.addView(gameStartView);
-        // activate view
-        stageController.activateView(gameStartView.getViewType());
+        // start
+        stageController.start();
 
     }
 
