@@ -49,6 +49,10 @@ public class GameStartView extends View implements Initializable {
     void keyPressed(KeyCode keyCode) {
     }
 
+    @Override
+    void activated() {
+
+    }
     private void playButtonClicked(ActionEvent event) {
         viewSwitch.activateView(ViewType.GAME_FIELD);
         viewModel.startGame();

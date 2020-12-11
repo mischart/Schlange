@@ -60,6 +60,11 @@ public class GameFieldView extends View implements Initializable {
     }
 
     @Override
+    void activated() {
+
+    }
+
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
         String pointString = resources.getString(POINTS);
         scoreLabel.textProperty().bind(new SimpleStringProperty(pointString).concat(viewModel.scoreProperty().asString()));

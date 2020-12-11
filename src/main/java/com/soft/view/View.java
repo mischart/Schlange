@@ -11,6 +11,8 @@ public abstract class View {
 
     abstract ViewType getViewType();
 
+    abstract void activated();
+
     abstract void keyPressed(KeyCode keyCode);
 
     public void setViewSwitch(ViewSwitch viewSwitch) {
