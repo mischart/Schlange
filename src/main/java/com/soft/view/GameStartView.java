@@ -55,7 +55,7 @@ public class GameStartView extends View implements Initializable {
     }
     private void playButtonClicked(ActionEvent event) {
         viewSwitch.activateView(ViewType.GAME_FIELD);
-        viewModel.startGame();
+        // viewModel.startGame();
         event.consume();
     }
 

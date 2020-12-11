@@ -61,7 +61,7 @@ public class GameFieldView extends View implements Initializable {
 
     @Override
     void activated() {
-
+        timer.start();
     }
 
     @Override
@@ -76,7 +76,6 @@ public class GameFieldView extends View implements Initializable {
         ListChangeListener<ViewModelPoint> snakeListener = createSnakeListener();
         viewModel.getSnakeBody().addListener(snakeListener);
         timer = createAnimationTimer();
-        timer.start();
         animationSpeed = 1000000000 / 8;
         viewModel.gameOverProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {

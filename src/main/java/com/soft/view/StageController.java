@@ -34,6 +34,7 @@ public class StageController implements ViewSwitch {
         activeView = viewType;
         stage.getScene().setRoot(viewEnumMap.get(viewType).getRoot());
         stage.sizeToScene();
+        viewEnumMap.get(viewType).activated();
     }
 
 }
