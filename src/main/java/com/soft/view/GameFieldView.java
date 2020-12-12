@@ -61,6 +61,7 @@ public class GameFieldView extends View implements Initializable {
 
     @Override
     void activated() {
+        viewModel.reset();
         timer.start();
     }
 
@@ -79,6 +80,8 @@ public class GameFieldView extends View implements Initializable {
         animationSpeed = 1000000000 / 8;
         viewModel.gameOverProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
+                timer.stop();
+                viewSwitch.activateView(ViewType.GAME_START);
             }
         });
     }

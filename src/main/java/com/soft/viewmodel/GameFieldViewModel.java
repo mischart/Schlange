@@ -42,13 +42,10 @@ public class GameFieldViewModel {
         updateSnakeBody();
         updateFood();
         updateScore();
-        if (model.isGameOver()) {
-            gameOver.set(true);
-            reset();
-        }
+        gameOver.set(model.isGameOver());
     }
 
-    private void reset() {
+    public void reset() {
         score.set(0);
         gameOver.set(false);
         snakeBody.clear();
