@@ -6,8 +6,8 @@ Pane {
     -fx-background-color: black;
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-padding: 5 0 0 10;
-    -fx-font-size: 16px;
+    -fx-padding: 5 0 5 0;
+    -fx-font-size: 20px;
 }
 
 #startRoot {

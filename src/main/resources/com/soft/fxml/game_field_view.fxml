@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.Pane?>
-<?import java.net.URL?>
 <?import javafx.scene.control.Label?>
-
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<VBox xmlns:fx="http://javafx.com/fxml"
-      xmlns="http://javafx.com/javafx"
-      fx:id="root" prefWidth="${gameFieldPane.width}">
+<?import java.net.URL?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:id="root" prefWidth="${gameFieldPane.width}"
+      xmlns="http://javafx.com/javafx/11.0.1">
     <stylesheets>
         <URL value="@../css/schlange.css"/>
     </stylesheets>
-    <Label fx:id="scoreLabel" prefWidth="${gameFieldPane.width}"/>
+    <Label fx:id="scoreLabel" alignment="CENTER" prefWidth="${gameFieldPane.width}"/>
     <Pane fx:id="gameFieldPane"/>
 </VBox>
