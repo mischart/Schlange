@@ -6,10 +6,8 @@ import com.soft.view.GameStartView;
 import com.soft.view.StageController;
 import com.soft.view.View;
 import com.soft.viewmodel.GameFieldViewModel;
-import com.soft.viewmodel.GameStartViewModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -39,11 +37,10 @@ public class App extends Application {
     private void initMVVM(Stage stage) throws IOException {
         // create model
         Game model = new Game(FIELD_WIDTH, FIELD_HEIGHT);
-        // create view models
+        // create view model
         GameFieldViewModel gameFieldViewModel = new GameFieldViewModel(model);
-        GameStartViewModel gameStartViewModel = new GameStartViewModel(model);
         // create views
-        GameStartView gameStartView = createGameStartView(gameStartViewModel);
+        GameStartView gameStartView = createGameStartView();
         GameFieldView gameFieldView = createGameFieldView(gameFieldViewModel);
         // create stage controller
         StageController stageController = new StageController(stage);
@@ -66,8 +63,8 @@ public class App extends Application {
     }
 
     // TODO: extract this method from createGameFieldView
-    private GameStartView createGameStartView(GameStartViewModel viewModel) throws IOException {
-        GameStartView view = new GameStartView(viewModel);
+    private GameStartView createGameStartView() throws IOException {
+        GameStartView view = new GameStartView();
         loadFXML(GAME_START_FXML_PATCH, view);
         return view;
     }

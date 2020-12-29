@@ -1,6 +1,5 @@
 package com.soft.view;
 
-import com.soft.viewmodel.GameStartViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,8 +14,6 @@ import java.util.ResourceBundle;
 
 public class GameStartView extends View implements Initializable {
 
-    private final GameStartViewModel viewModel;
-
     @FXML
     private VBox startRoot;
 
@@ -26,8 +23,7 @@ public class GameStartView extends View implements Initializable {
     @FXML
     private Button playButton;
 
-    public GameStartView(GameStartViewModel viewModel) {
-        this.viewModel = viewModel;
+    public GameStartView() {
     }
 
     @Override
@@ -55,7 +51,6 @@ public class GameStartView extends View implements Initializable {
     }
     private void playButtonClicked(ActionEvent event) {
         viewSwitch.activateView(ViewType.GAME_FIELD);
-        // viewModel.startGame();
         event.consume();
     }
 
