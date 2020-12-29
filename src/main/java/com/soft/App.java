@@ -16,10 +16,10 @@ import java.util.ResourceBundle;
 
 public class App extends Application {
 
-    private static final int FIELD_WIDTH = 50;
-    private static final int FIELD_HEIGHT = 50;
-    private static final int GAME_OBJECT_WIDTH = 10;
-    private static final int GAME_OBJECT_HEIGHT = 10;
+    private static final int FIELD_WIDTH = 30;
+    private static final int FIELD_HEIGHT = 30;
+    private static final int GAME_OBJECT_WIDTH = 15;
+    private static final int GAME_OBJECT_HEIGHT = 15;
     private static final String GAME_FIELD_FXML_PATCH = "fxml/game_field_view.fxml";
     private static final String GAME_START_FXML_PATCH = "fxml/game_start_view.fxml";
     private static final String STRING_RESOURCE_PATCH = "com.soft.strings.strings";
